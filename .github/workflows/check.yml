@@ -1,0 +1,50 @@
+name: Check
+on:
+  pull_request:
+    branches:
+      - "*"
+  push:
+    branches:
+      - main
+jobs:
+  prettier-check:
+    name: Prettier Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: Checkout
+      - uses: actions/setup-node@v3
+        name: Set up node
+        with:
+          node-version: "20"
+          cache: "npm"
+      - name: Install npm packages
+        run: npm ci
+      - name: Check code format with Prettier
+        run: npx prettier --check .
+  lint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: Checkout
+      - uses: actions/setup-node@v3
+        name: Set up node
+        with:
+          node-version: "20"
+          cache: "npm"
+      - name: Install npm packages
+        run: npm ci
+      - name: Run ESLint
+        run: npx eslint .
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+      - name: Install dependencies
+        run: npm ci
+      - name: Run vitest
+        run: npx vitest run --coverage
