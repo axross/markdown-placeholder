@@ -1,5 +1,13 @@
+import camelCase from "camelcase";
 import { loremIpsum } from "lorem-ipsum";
-import { Emphasis, Paragraph, PhrasingContent, Strong, Text } from "mdast";
+import {
+  Emphasis,
+  InlineCode,
+  Paragraph,
+  PhrasingContent,
+  Strong,
+  Text,
+} from "mdast";
 import prand from "pure-rand";
 
 // eslint-disable-next-line no-unused-vars
@@ -21,25 +29,25 @@ function createRand({ seed }: { seed?: number } = {}): Rand {
   return rand;
 }
 
-const textDefaultMinLength = 1;
-const textDefaultMaxLength = 8;
+const textDefaultMinWords = 1;
+const textDefaultMaxWords = 8;
 const floatRandGranularity = 4294967296;
 
 function randText({
   value,
-  minLength = textDefaultMinLength,
-  maxLength = textDefaultMaxLength,
+  minWords = textDefaultMinWords,
+  maxWords = textDefaultMaxWords,
   rand,
 }: {
   value?: string;
-  minLength?: number;
-  maxLength?: number;
+  minWords?: number;
+  maxWords?: number;
   rand: Rand;
 }): Text {
   const resolvedValue =
     value ??
     loremIpsum({
-      count: rand(minLength, maxLength),
+      count: rand(minWords, maxWords),
       units: "words",
       suffix: "",
       // eslint-disable-next-line no-magic-numbers
@@ -49,6 +57,48 @@ function randText({
   return {
     type: "text",
     value: resolvedValue.toLowerCase(),
+  };
+}
+
+const codeSpanDefaultMinWords = 1;
+const codeSpanDefaultMaxWords = 4;
+
+function randCodeSpan({
+  value,
+  convention = "camel-case",
+  minWords = codeSpanDefaultMinWords,
+  maxWords = codeSpanDefaultMaxWords,
+  rand,
+}: {
+  value?: string;
+  convention?: "camel-case" | "snake-case";
+  minWords?: number;
+  maxWords?: number;
+  rand: Rand;
+}): InlineCode {
+  let resolvedValue =
+    value ??
+    loremIpsum({
+      count: rand(minWords, maxWords),
+      units: "words",
+      suffix: "",
+      // eslint-disable-next-line no-magic-numbers
+      random: () => rand(0, floatRandGranularity) / floatRandGranularity,
+    });
+
+  // eslint-disable-next-line default-case
+  switch (convention) {
+    case "camel-case":
+      resolvedValue = camelCase(resolvedValue);
+      break;
+    case "snake-case":
+      resolvedValue = resolvedValue.split(" ").join("_");
+      break;
+  }
+
+  return {
+    type: "inlineCode",
+    value: resolvedValue,
   };
 }
 
@@ -63,10 +113,10 @@ function randEmphasis({
     type: "emphasis",
     children: children ?? [
       randText({
-        minLength: 1,
-        maxLength: Math.min(
-          rand(textDefaultMinLength, textDefaultMaxLength),
-          rand(textDefaultMinLength, textDefaultMaxLength),
+        minWords: textDefaultMinWords,
+        maxWords: Math.min(
+          rand(textDefaultMinWords, textDefaultMaxWords),
+          rand(textDefaultMinWords, textDefaultMaxWords),
         ),
         rand,
       }),
@@ -85,10 +135,10 @@ function randStrongEmphasis({
     type: "strong",
     children: children ?? [
       randText({
-        minLength: 1,
-        maxLength: Math.min(
-          rand(textDefaultMinLength, textDefaultMaxLength),
-          rand(textDefaultMinLength, textDefaultMaxLength),
+        minWords: textDefaultMinWords,
+        maxWords: Math.min(
+          rand(textDefaultMinWords, textDefaultMaxWords),
+          rand(textDefaultMinWords, textDefaultMaxWords),
         ),
         rand,
       }),
@@ -98,11 +148,16 @@ function randStrongEmphasis({
 
 const paragraphDefaultMinChildLength = 1;
 const paragraphDefaultMaxChildLength = 32;
-const paragraphChildrenFunctions = [
+
+// eslint-disable-next-line no-unused-vars
+type PhrasingContentFunction = (params: { rand: Rand }) => PhrasingContent;
+
+const paragraphChildrenFunctions: PhrasingContentFunction[] = [
   randText,
   randText,
   randText,
   randText,
+  randCodeSpan,
   randEmphasis,
   randStrongEmphasis,
 ];
@@ -138,6 +193,7 @@ function randParagraph({
 
 export {
   createRand,
+  randCodeSpan,
   randEmphasis,
   randParagraph,
   randStrongEmphasis,
