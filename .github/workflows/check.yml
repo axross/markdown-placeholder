@@ -38,6 +38,7 @@ jobs:
       - name: Run ESLint
         run: npx eslint .
   unit-test:
+    name: Unit Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
