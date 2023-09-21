@@ -148,11 +148,16 @@ function randStrongEmphasis({
 
 const paragraphDefaultMinChildLength = 1;
 const paragraphDefaultMaxChildLength = 32;
-const paragraphChildrenFunctions = [
+
+// eslint-disable-next-line no-unused-vars
+type PhrasingContentFunction = (params: { rand: Rand }) => PhrasingContent;
+
+const paragraphChildrenFunctions: PhrasingContentFunction[] = [
   randText,
   randText,
   randText,
   randText,
+  randCodeSpan,
   randEmphasis,
   randStrongEmphasis,
 ];

@@ -8,40 +8,85 @@ exports[`randParagraph() > continuously returns paragraph nodes with random stri
       "value": "dolore veniam",
     },
     {
-      "children": [
-        {
-          "type": "text",
-          "value": "magna sint aliqua",
-        },
-      ],
-      "type": "strong",
+      "type": "text",
+      "value": "magna sint aliqua amet",
     },
     {
-      "children": [
-        {
-          "type": "text",
-          "value": "aliqua",
-        },
-      ],
-      "type": "strong",
+      "type": "text",
+      "value": "aliqua",
     },
     {
       "type": "text",
       "value": "excepteur consectetur labore dolor id ullamco nostrud in",
     },
     {
-      "type": "text",
-      "value": "aute dolore consectetur anim occaecat commodo minim",
+      "children": [
+        {
+          "type": "text",
+          "value": "occaecat commodo",
+        },
+      ],
+      "type": "emphasis",
     },
     {
       "type": "text",
-      "value": "sunt lorem ullamco lorem proident",
+      "value": "lorem proident aute aute dolore consectetur",
+    },
+    {
+      "type": "text",
+      "value": "sit lorem sunt consequat sunt lorem ullamco",
+    },
+    {
+      "type": "text",
+      "value": "dolor sunt non reprehenderit eu do laborum",
+    },
+    {
+      "type": "text",
+      "value": "eiusmod ipsum laborum aliqua dolor",
+    },
+    {
+      "type": "text",
+      "value": "excepteur",
+    },
+    {
+      "type": "text",
+      "value": "pariatur",
     },
     {
       "children": [
         {
           "type": "text",
-          "value": "sunt",
+          "value": "eiusmod",
+        },
+      ],
+      "type": "emphasis",
+    },
+    {
+      "type": "text",
+      "value": "proident est ut sint aliqua non",
+    },
+    {
+      "type": "inlineCode",
+      "value": "laborePariatur",
+    },
+    {
+      "children": [
+        {
+          "type": "text",
+          "value": "veniam",
+        },
+      ],
+      "type": "emphasis",
+    },
+    {
+      "type": "text",
+      "value": "nulla exercitation incididunt in eiusmod sint ipsum",
+    },
+    {
+      "children": [
+        {
+          "type": "text",
+          "value": "non laboris",
         },
       ],
       "type": "strong",
@@ -50,7 +95,7 @@ exports[`randParagraph() > continuously returns paragraph nodes with random stri
       "children": [
         {
           "type": "text",
-          "value": "lorem",
+          "value": "duis",
         },
       ],
       "type": "strong",
@@ -59,7 +104,7 @@ exports[`randParagraph() > continuously returns paragraph nodes with random stri
       "children": [
         {
           "type": "text",
-          "value": "laborum",
+          "value": "enim officia",
         },
       ],
       "type": "strong",
@@ -68,74 +113,37 @@ exports[`randParagraph() > continuously returns paragraph nodes with random stri
       "children": [
         {
           "type": "text",
-          "value": "non reprehenderit eu do",
+          "value": "exercitation",
         },
       ],
       "type": "strong",
     },
     {
       "type": "text",
-      "value": "pariatur excepteur eiusmod ipsum laborum aliqua dolor dolor",
+      "value": "fugiat consectetur",
     },
     {
-      "type": "text",
-      "value": "non reprehenderit eiusmod ex",
-    },
-    {
-      "type": "text",
-      "value": "proident est ut sint",
-    },
-    {
-      "type": "text",
-      "value": "labore pariatur",
-    },
-    {
-      "type": "text",
-      "value": "eiusmod sint ipsum voluptate veniam",
+      "type": "inlineCode",
+      "value": "consequat",
     },
     {
       "children": [
         {
           "type": "text",
-          "value": "incididunt",
+          "value": "esse laboris in est ipsum",
         },
       ],
       "type": "strong",
     },
     {
       "type": "text",
-      "value": "officia id duis non laboris nulla",
-    },
-    {
-      "type": "text",
-      "value": "fugiat consectetur exercitation lorem voluptate",
+      "value": "adipisicing elit commodo nulla quis irure",
     },
     {
       "children": [
         {
           "type": "text",
-          "value": "commodo consequat",
-        },
-      ],
-      "type": "strong",
-    },
-    {
-      "type": "text",
-      "value": "laboris in est ipsum",
-    },
-    {
-      "type": "text",
-      "value": "quis irure sint",
-    },
-    {
-      "type": "text",
-      "value": "eu adipisicing elit commodo",
-    },
-    {
-      "children": [
-        {
-          "type": "text",
-          "value": "et",
+          "value": "est",
         },
       ],
       "type": "emphasis",
@@ -144,44 +152,41 @@ exports[`randParagraph() > continuously returns paragraph nodes with random stri
       "children": [
         {
           "type": "text",
-          "value": "lorem labore ex",
+          "value": "ex",
         },
       ],
       "type": "strong",
     },
     {
       "type": "text",
-      "value": "incididunt sunt mollit eu excepteur",
+      "value": "sunt mollit eu excepteur lorem labore",
+    },
+    {
+      "type": "inlineCode",
+      "value": "quisSitConsequat",
     },
     {
       "type": "text",
-      "value": "sit",
+      "value": "sit laborum elit",
     },
     {
       "type": "text",
-      "value": "et dolor ipsum sit laborum elit",
-    },
-    {
-      "type": "text",
-      "value": "occaecat id fugiat deserunt duis sunt aliqua incididunt",
-    },
-    {
-      "type": "text",
-      "value": "ut tempor est est ex id",
-    },
-    {
-      "type": "text",
-      "value": "esse dolore id anim esse incididunt eu",
-    },
-    {
-      "type": "text",
-      "value": "ex velit enim reprehenderit amet magna occaecat laboris",
+      "value": "sunt aliqua incididunt duis et dolor ipsum",
     },
     {
       "children": [
         {
           "type": "text",
-          "value": "non",
+          "value": "est ex id occaecat id fugiat",
+        },
+      ],
+      "type": "strong",
+    },
+    {
+      "children": [
+        {
+          "type": "text",
+          "value": "ut",
         },
       ],
       "type": "strong",
@@ -198,35 +203,52 @@ exports[`randParagraph() > continuously returns paragraph nodes with random stri
       "children": [
         {
           "type": "text",
-          "value": "anim commodo",
+          "value": "do",
         },
       ],
-      "type": "strong",
-    },
-    {
-      "type": "text",
-      "value": "duis officia lorem exercitation adipisicing ad pariatur",
-    },
-    {
-      "type": "text",
-      "value": "fugiat ea excepteur",
+      "type": "emphasis",
     },
     {
       "children": [
         {
           "type": "text",
-          "value": "nulla eiusmod",
+          "value": "laboris veniam",
         },
       ],
       "type": "emphasis",
     },
     {
       "type": "text",
-      "value": "reprehenderit voluptate quis labore duis dolor officia",
+      "value": "officia irure culpa esse voluptate cillum laboris laboris",
     },
     {
       "type": "text",
-      "value": "sunt sunt velit lorem mollit sint ad",
+      "value": "adipisicing ad pariatur anim commodo eu",
+    },
+    {
+      "type": "text",
+      "value": "officia lorem",
+    },
+    {
+      "children": [
+        {
+          "type": "text",
+          "value": "ea excepteur",
+        },
+      ],
+      "type": "strong",
+    },
+    {
+      "type": "inlineCode",
+      "value": "enimFugiat",
+    },
+    {
+      "type": "text",
+      "value": "duis dolor officia amet nulla eiusmod",
+    },
+    {
+      "type": "text",
+      "value": "quis",
     },
   ],
   "type": "paragraph",
@@ -237,26 +259,29 @@ exports[`randParagraph() > continuously returns paragraph nodes with random stri
 {
   "children": [
     {
-      "children": [
-        {
-          "type": "text",
-          "value": "quis",
-        },
-      ],
-      "type": "strong",
+      "type": "text",
+      "value": "elit reprehenderit anim ex",
+    },
+    {
+      "type": "text",
+      "value": "nulla commodo in nulla laboris occaecat tempor id",
     },
     {
       "children": [
         {
           "type": "text",
-          "value": "reprehenderit ut",
+          "value": "ipsum excepteur",
         },
       ],
       "type": "emphasis",
     },
     {
+      "type": "inlineCode",
+      "value": "doloreQuisEnimLabore",
+    },
+    {
       "type": "text",
-      "value": "nostrud nulla",
+      "value": "nostrud nulla reprehenderit ut",
     },
     {
       "type": "text",
@@ -265,148 +290,6 @@ exports[`randParagraph() > continuously returns paragraph nodes with random stri
     {
       "type": "text",
       "value": "esse id anim esse irure dolore labore",
-    },
-    {
-      "children": [
-        {
-          "type": "text",
-          "value": "commodo",
-        },
-      ],
-      "type": "strong",
-    },
-    {
-      "children": [
-        {
-          "type": "text",
-          "value": "proident reprehenderit est exercitation",
-        },
-      ],
-      "type": "emphasis",
-    },
-    {
-      "type": "text",
-      "value": "minim ut anim laborum est",
-    },
-    {
-      "type": "text",
-      "value": "culpa et sint cupidatat cupidatat ipsum reprehenderit",
-    },
-    {
-      "children": [
-        {
-          "type": "text",
-          "value": "sit",
-        },
-      ],
-      "type": "emphasis",
-    },
-    {
-      "type": "text",
-      "value": "quis",
-    },
-    {
-      "type": "text",
-      "value": "in dolor aute",
-    },
-    {
-      "children": [
-        {
-          "type": "text",
-          "value": "cillum pariatur",
-        },
-      ],
-      "type": "strong",
-    },
-    {
-      "type": "text",
-      "value": "aute nostrud adipisicing culpa incididunt",
-    },
-    {
-      "type": "text",
-      "value": "officia pariatur pariatur et officia labore",
-    },
-    {
-      "type": "text",
-      "value": "aliqua aliqua exercitation velit laboris laboris consequat aute",
-    },
-    {
-      "children": [
-        {
-          "type": "text",
-          "value": "aliquip",
-        },
-      ],
-      "type": "strong",
-    },
-    {
-      "type": "text",
-      "value": "ea sit do irure",
-    },
-    {
-      "type": "text",
-      "value": "occaecat pariatur nulla nulla enim",
-    },
-    {
-      "type": "text",
-      "value": "nostrud consectetur",
-    },
-    {
-      "children": [
-        {
-          "type": "text",
-          "value": "amet",
-        },
-      ],
-      "type": "strong",
-    },
-    {
-      "type": "text",
-      "value": "magna aute do reprehenderit aliqua occaecat",
-    },
-    {
-      "children": [
-        {
-          "type": "text",
-          "value": "velit",
-        },
-      ],
-      "type": "strong",
-    },
-    {
-      "type": "text",
-      "value": "dolor incididunt deserunt in tempor culpa laborum",
-    },
-    {
-      "children": [
-        {
-          "type": "text",
-          "value": "reprehenderit",
-        },
-      ],
-      "type": "emphasis",
-    },
-    {
-      "children": [
-        {
-          "type": "text",
-          "value": "sint",
-        },
-      ],
-      "type": "emphasis",
-    },
-    {
-      "children": [
-        {
-          "type": "text",
-          "value": "ullamco nulla deserunt",
-        },
-      ],
-      "type": "strong",
-    },
-    {
-      "type": "text",
-      "value": "esse cupidatat nulla velit ipsum",
     },
   ],
   "type": "paragraph",
@@ -421,40 +304,85 @@ exports[`randParagraph() > returns a paragraph node with random string value 1`]
       "value": "dolore veniam",
     },
     {
-      "children": [
-        {
-          "type": "text",
-          "value": "magna sint aliqua",
-        },
-      ],
-      "type": "strong",
+      "type": "text",
+      "value": "magna sint aliqua amet",
     },
     {
-      "children": [
-        {
-          "type": "text",
-          "value": "aliqua",
-        },
-      ],
-      "type": "strong",
+      "type": "text",
+      "value": "aliqua",
     },
     {
       "type": "text",
       "value": "excepteur consectetur labore dolor id ullamco nostrud in",
     },
     {
-      "type": "text",
-      "value": "aute dolore consectetur anim occaecat commodo minim",
+      "children": [
+        {
+          "type": "text",
+          "value": "occaecat commodo",
+        },
+      ],
+      "type": "emphasis",
     },
     {
       "type": "text",
-      "value": "sunt lorem ullamco lorem proident",
+      "value": "lorem proident aute aute dolore consectetur",
+    },
+    {
+      "type": "text",
+      "value": "sit lorem sunt consequat sunt lorem ullamco",
+    },
+    {
+      "type": "text",
+      "value": "dolor sunt non reprehenderit eu do laborum",
+    },
+    {
+      "type": "text",
+      "value": "eiusmod ipsum laborum aliqua dolor",
+    },
+    {
+      "type": "text",
+      "value": "excepteur",
+    },
+    {
+      "type": "text",
+      "value": "pariatur",
     },
     {
       "children": [
         {
           "type": "text",
-          "value": "sunt",
+          "value": "eiusmod",
+        },
+      ],
+      "type": "emphasis",
+    },
+    {
+      "type": "text",
+      "value": "proident est ut sint aliqua non",
+    },
+    {
+      "type": "inlineCode",
+      "value": "laborePariatur",
+    },
+    {
+      "children": [
+        {
+          "type": "text",
+          "value": "veniam",
+        },
+      ],
+      "type": "emphasis",
+    },
+    {
+      "type": "text",
+      "value": "nulla exercitation incididunt in eiusmod sint ipsum",
+    },
+    {
+      "children": [
+        {
+          "type": "text",
+          "value": "non laboris",
         },
       ],
       "type": "strong",
@@ -463,7 +391,7 @@ exports[`randParagraph() > returns a paragraph node with random string value 1`]
       "children": [
         {
           "type": "text",
-          "value": "lorem",
+          "value": "duis",
         },
       ],
       "type": "strong",
@@ -472,7 +400,7 @@ exports[`randParagraph() > returns a paragraph node with random string value 1`]
       "children": [
         {
           "type": "text",
-          "value": "laborum",
+          "value": "enim officia",
         },
       ],
       "type": "strong",
@@ -481,74 +409,37 @@ exports[`randParagraph() > returns a paragraph node with random string value 1`]
       "children": [
         {
           "type": "text",
-          "value": "non reprehenderit eu do",
+          "value": "exercitation",
         },
       ],
       "type": "strong",
     },
     {
       "type": "text",
-      "value": "pariatur excepteur eiusmod ipsum laborum aliqua dolor dolor",
+      "value": "fugiat consectetur",
     },
     {
-      "type": "text",
-      "value": "non reprehenderit eiusmod ex",
-    },
-    {
-      "type": "text",
-      "value": "proident est ut sint",
-    },
-    {
-      "type": "text",
-      "value": "labore pariatur",
-    },
-    {
-      "type": "text",
-      "value": "eiusmod sint ipsum voluptate veniam",
+      "type": "inlineCode",
+      "value": "consequat",
     },
     {
       "children": [
         {
           "type": "text",
-          "value": "incididunt",
+          "value": "esse laboris in est ipsum",
         },
       ],
       "type": "strong",
     },
     {
       "type": "text",
-      "value": "officia id duis non laboris nulla",
-    },
-    {
-      "type": "text",
-      "value": "fugiat consectetur exercitation lorem voluptate",
+      "value": "adipisicing elit commodo nulla quis irure",
     },
     {
       "children": [
         {
           "type": "text",
-          "value": "commodo consequat",
-        },
-      ],
-      "type": "strong",
-    },
-    {
-      "type": "text",
-      "value": "laboris in est ipsum",
-    },
-    {
-      "type": "text",
-      "value": "quis irure sint",
-    },
-    {
-      "type": "text",
-      "value": "eu adipisicing elit commodo",
-    },
-    {
-      "children": [
-        {
-          "type": "text",
-          "value": "et",
+          "value": "est",
         },
       ],
       "type": "emphasis",
@@ -557,44 +448,41 @@ exports[`randParagraph() > returns a paragraph node with random string value 1`]
       "children": [
         {
           "type": "text",
-          "value": "lorem labore ex",
+          "value": "ex",
         },
       ],
       "type": "strong",
     },
     {
       "type": "text",
-      "value": "incididunt sunt mollit eu excepteur",
+      "value": "sunt mollit eu excepteur lorem labore",
+    },
+    {
+      "type": "inlineCode",
+      "value": "quisSitConsequat",
     },
     {
       "type": "text",
-      "value": "sit",
+      "value": "sit laborum elit",
     },
     {
       "type": "text",
-      "value": "et dolor ipsum sit laborum elit",
-    },
-    {
-      "type": "text",
-      "value": "occaecat id fugiat deserunt duis sunt aliqua incididunt",
-    },
-    {
-      "type": "text",
-      "value": "ut tempor est est ex id",
-    },
-    {
-      "type": "text",
-      "value": "esse dolore id anim esse incididunt eu",
-    },
-    {
-      "type": "text",
-      "value": "ex velit enim reprehenderit amet magna occaecat laboris",
+      "value": "sunt aliqua incididunt duis et dolor ipsum",
     },
     {
       "children": [
         {
           "type": "text",
-          "value": "non",
+          "value": "est ex id occaecat id fugiat",
+        },
+      ],
+      "type": "strong",
+    },
+    {
+      "children": [
+        {
+          "type": "text",
+          "value": "ut",
         },
       ],
       "type": "strong",
