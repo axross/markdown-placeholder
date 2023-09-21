@@ -1,5 +1,13 @@
+import camelCase from "camelcase";
 import { loremIpsum } from "lorem-ipsum";
-import { Emphasis, Paragraph, PhrasingContent, Strong, Text } from "mdast";
+import {
+  Emphasis,
+  InlineCode,
+  Paragraph,
+  PhrasingContent,
+  Strong,
+  Text,
+} from "mdast";
 import prand from "pure-rand";
 
 // eslint-disable-next-line no-unused-vars
@@ -49,6 +57,48 @@ function randText({
   return {
     type: "text",
     value: resolvedValue.toLowerCase(),
+  };
+}
+
+const codeSpanDefaultMinWords = 1;
+const codeSpanDefaultMaxWords = 4;
+
+function randCodeSpan({
+  value,
+  convention = "camel-case",
+  minWords = codeSpanDefaultMinWords,
+  maxWords = codeSpanDefaultMaxWords,
+  rand,
+}: {
+  value?: string;
+  convention?: "camel-case" | "snake-case";
+  minWords?: number;
+  maxWords?: number;
+  rand: Rand;
+}): InlineCode {
+  let resolvedValue =
+    value ??
+    loremIpsum({
+      count: rand(minWords, maxWords),
+      units: "words",
+      suffix: "",
+      // eslint-disable-next-line no-magic-numbers
+      random: () => rand(0, floatRandGranularity) / floatRandGranularity,
+    });
+
+  // eslint-disable-next-line default-case
+  switch (convention) {
+    case "camel-case":
+      resolvedValue = camelCase(resolvedValue);
+      break;
+    case "snake-case":
+      resolvedValue = resolvedValue.split(" ").join("_");
+      break;
+  }
+
+  return {
+    type: "inlineCode",
+    value: resolvedValue,
   };
 }
 
@@ -138,6 +188,7 @@ function randParagraph({
 
 export {
   createRand,
+  randCodeSpan,
   randEmphasis,
   randParagraph,
   randStrongEmphasis,

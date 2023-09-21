@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   createRand,
+  randCodeSpan,
   randEmphasis,
   randParagraph,
   randStrongEmphasis,
@@ -42,6 +43,41 @@ describe("randText()", () => {
     `);
   });
 });
+
+describe("randCodeSpan()", () => {
+  it("returns a code span node with random string value", () => {
+    const rand = createRand();
+
+    expect(randCodeSpan({ rand })).toMatchInlineSnapshot(`
+      {
+        "type": "inlineCode",
+        "value": "aliquaAmetDoloreVeniam",
+      }
+    `);
+  });
+
+  it("continuously returns code span nodes with random string value when you call it more than once", () => {
+    const rand = createRand();
+
+    expect(randCodeSpan({ rand })).toMatchInlineSnapshot(`
+      {
+        "type": "inlineCode",
+        "value": "aliquaAmetDoloreVeniam",
+      }
+    `);
+    expect(randCodeSpan({ rand })).toMatchInlineSnapshot(`
+      {
+        "type": "inlineCode",
+        "value": "ametEx",
+      }
+    `);
+    expect(randCodeSpan({ rand })).toMatchInlineSnapshot(`
+      {
+        "type": "inlineCode",
+        "value": "nullaAliqua",
+      }
+    `);
+  });
 
   it('returns a code span node with string value in snake_case when the given convention was "snake-case"', () => {
     const rand = createRand();
