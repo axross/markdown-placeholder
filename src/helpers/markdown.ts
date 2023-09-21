@@ -21,25 +21,25 @@ function createRand({ seed }: { seed?: number } = {}): Rand {
   return rand;
 }
 
-const textDefaultMinLength = 1;
-const textDefaultMaxLength = 8;
+const textDefaultMinWords = 1;
+const textDefaultMaxWords = 8;
 const floatRandGranularity = 4294967296;
 
 function randText({
   value,
-  minLength = textDefaultMinLength,
-  maxLength = textDefaultMaxLength,
+  minWords = textDefaultMinWords,
+  maxWords = textDefaultMaxWords,
   rand,
 }: {
   value?: string;
-  minLength?: number;
-  maxLength?: number;
+  minWords?: number;
+  maxWords?: number;
   rand: Rand;
 }): Text {
   const resolvedValue =
     value ??
     loremIpsum({
-      count: rand(minLength, maxLength),
+      count: rand(minWords, maxWords),
       units: "words",
       suffix: "",
       // eslint-disable-next-line no-magic-numbers
@@ -63,10 +63,10 @@ function randEmphasis({
     type: "emphasis",
     children: children ?? [
       randText({
-        minLength: 1,
-        maxLength: Math.min(
-          rand(textDefaultMinLength, textDefaultMaxLength),
-          rand(textDefaultMinLength, textDefaultMaxLength),
+        minWords: textDefaultMinWords,
+        maxWords: Math.min(
+          rand(textDefaultMinWords, textDefaultMaxWords),
+          rand(textDefaultMinWords, textDefaultMaxWords),
         ),
         rand,
       }),
@@ -85,10 +85,10 @@ function randStrongEmphasis({
     type: "strong",
     children: children ?? [
       randText({
-        minLength: 1,
-        maxLength: Math.min(
-          rand(textDefaultMinLength, textDefaultMaxLength),
-          rand(textDefaultMinLength, textDefaultMaxLength),
+        minWords: textDefaultMinWords,
+        maxWords: Math.min(
+          rand(textDefaultMinWords, textDefaultMaxWords),
+          rand(textDefaultMinWords, textDefaultMaxWords),
         ),
         rand,
       }),
