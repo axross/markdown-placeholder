@@ -1,5 +1,5 @@
 import { loremIpsum } from "lorem-ipsum";
-import { Text } from "mdast";
+import { Emphasis, PhrasingContent, Strong, Text } from "mdast";
 import prand from "pure-rand";
 
 // eslint-disable-next-line no-unused-vars
@@ -21,23 +21,25 @@ function createRand({ seed }: { seed?: number } = {}): Rand {
   return rand;
 }
 
-const minWordsInText = 1;
-const maxWordsInText = 8;
+const textDefaultMinLength = 1;
+const textDefaultMaxLength = 8;
 const floatRandGranularity = 4294967296;
 
 function randText({
   value,
-  length,
+  minLength = textDefaultMinLength,
+  maxLength = textDefaultMaxLength,
   rand,
 }: {
   value?: string;
-  length?: number;
+  minLength?: number;
+  maxLength?: number;
   rand: Rand;
 }): Text {
   const resolvedValue =
     value ??
     loremIpsum({
-      count: length ?? rand(minWordsInText, maxWordsInText),
+      count: rand(minLength, maxLength),
       units: "words",
       suffix: "",
       // eslint-disable-next-line no-magic-numbers
@@ -50,4 +52,48 @@ function randText({
   };
 }
 
-export { createRand, randText };
+function randEmphasis({
+  children,
+  rand,
+}: {
+  children?: PhrasingContent[];
+  rand: Rand;
+}): Emphasis {
+  return {
+    type: "emphasis",
+    children: children ?? [
+      randText({
+        minLength: 1,
+        maxLength: Math.min(
+          rand(textDefaultMinLength, textDefaultMaxLength),
+          rand(textDefaultMinLength, textDefaultMaxLength),
+        ),
+        rand,
+      }),
+    ],
+  };
+}
+
+function randStrongEmphasis({
+  children,
+  rand,
+}: {
+  children?: PhrasingContent[];
+  rand: Rand;
+}): Strong {
+  return {
+    type: "strong",
+    children: children ?? [
+      randText({
+        minLength: 1,
+        maxLength: Math.min(
+          rand(textDefaultMinLength, textDefaultMaxLength),
+          rand(textDefaultMinLength, textDefaultMaxLength),
+        ),
+        rand,
+      }),
+    ],
+  };
+}
+
+export { createRand, randEmphasis, randStrongEmphasis, randText };
