@@ -1,5 +1,5 @@
 import { loremIpsum } from "lorem-ipsum";
-import { Emphasis, PhrasingContent, Strong, Text } from "mdast";
+import { Emphasis, Paragraph, PhrasingContent, Strong, Text } from "mdast";
 import prand from "pure-rand";
 
 // eslint-disable-next-line no-unused-vars
@@ -96,4 +96,50 @@ function randStrongEmphasis({
   };
 }
 
-export { createRand, randEmphasis, randStrongEmphasis, randText };
+const paragraphDefaultMinChildLength = 1;
+const paragraphDefaultMaxChildLength = 32;
+const paragraphChildrenFunctions = [
+  randText,
+  randText,
+  randText,
+  randText,
+  randEmphasis,
+  randStrongEmphasis,
+];
+
+function randParagraph({
+  children,
+  childLength,
+  rand,
+}: {
+  children?: PhrasingContent[];
+  childLength?: number;
+  rand: Rand;
+}): Paragraph {
+  const resolvedChildren =
+    children ??
+    Array.from(
+      {
+        length:
+          childLength ??
+          rand(paragraphDefaultMinChildLength, paragraphDefaultMaxChildLength),
+      },
+      () =>
+        paragraphChildrenFunctions[
+          rand(0, paragraphChildrenFunctions.length - 1)
+        ]({ rand }),
+    );
+
+  return {
+    type: "paragraph",
+    children: resolvedChildren,
+  };
+}
+
+export {
+  createRand,
+  randEmphasis,
+  randParagraph,
+  randStrongEmphasis,
+  randText,
+};
