@@ -1,7 +1,7 @@
 import "./globals.css";
 import { type Metadata } from "next";
 import { Inter } from "next/font/google";
-import { type ReactNode } from "react";
+import { type JSX, type ReactNode } from "react";
 
 // eslint-disable-next-line new-cap
 const inter = Inter({ subsets: ["latin"] });
@@ -15,7 +15,7 @@ export default function RootLayout({
   children,
 }: {
   readonly children: ReactNode;
-}) {
+}): JSX.Element {
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>

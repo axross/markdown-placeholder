@@ -35,6 +35,8 @@ function randSentence({ rand }: { rand: Rand }): string {
   return `${sentenceCase(text)}.`;
 }
 
+const wrapperDefaultMaxLength = 3;
+
 function wrapPartOfTextNodeWith(
   {
     text,
@@ -51,7 +53,9 @@ function wrapPartOfTextNodeWith(
 ): PhrasingContent[] {
   const words = text.value.split(" ");
   const resolvedStart = start ?? rand(0, words.length - 1);
-  const resolvedEnd = end ?? Math.min(resolvedStart + rand(1, 3), words.length);
+  const resolvedEnd =
+    end ??
+    Math.min(resolvedStart + rand(1, wrapperDefaultMaxLength), words.length);
   const wordsBefore = words.slice(0, resolvedStart);
   const wordsToWrap = words.slice(resolvedStart, resolvedEnd);
   const wordsAfter = words.slice(resolvedEnd);
@@ -83,6 +87,7 @@ function wrapPartOfTextNodeWith(
 
 const paragraphDefaultMinSentences = 1;
 const paragraphDefaultMaxSentences = 8;
+const paragraphChildOptionLength = 5;
 
 function randParagraph({
   sentences,
@@ -99,9 +104,10 @@ function randParagraph({
   for (let index = 0; index < resolvedSentences; index += 1) {
     const sentence = randSentence({ rand });
     const text: Text = { type: "text", value: sentence };
-    const chosen = rand(0, 5);
+    const chosen = rand(0, paragraphChildOptionLength);
 
     switch (chosen) {
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       case 1: {
         contents.push(
           ...wrapPartOfTextNodeWith({ text, rand }, (node) => ({
@@ -112,6 +118,7 @@ function randParagraph({
 
         break;
       }
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       case 2: {
         contents.push(
           ...wrapPartOfTextNodeWith({ text, rand }, (node) => ({
@@ -122,6 +129,7 @@ function randParagraph({
 
         break;
       }
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       case 3: {
         contents.push(
           ...wrapPartOfTextNodeWith({ text, rand }, (node) => ({
