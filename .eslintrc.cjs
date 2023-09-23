@@ -16,5 +16,15 @@ module.exports = {
         "unicorn/numeric-separators-style": "off",
       },
     },
+    {
+      files: [
+        "*rc.@(js|mjs|cjs|ts|mts|cts|json)",
+        "*.config.@(js|mjs|cjs|ts|mts|cts|json)",
+      ],
+      plugins: ["eslint-plugin-unicorn"],
+      rules: {
+        "unicorn/prefer-module": "off",
+      },
+    },
   ],
 };
