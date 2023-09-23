@@ -1,13 +1,6 @@
-import camelCase from "camelcase";
+import { camelCase, sentenceCase } from "change-case";
 import { loremIpsum } from "lorem-ipsum";
-import {
-  Emphasis,
-  InlineCode,
-  Paragraph,
-  PhrasingContent,
-  Strong,
-  Text,
-} from "mdast";
+import { type Paragraph, type PhrasingContent, type Text } from "mdast";
 import prand from "pure-rand";
 
 // eslint-disable-next-line no-unused-vars
@@ -18,7 +11,7 @@ const defaultSeed = 256;
 function createRand({ seed }: { seed?: number } = {}): Rand {
   let rng = prand.xoroshiro128plus(seed ?? defaultSeed);
 
-  function rand(min: number, max: number) {
+  function rand(min: number, max: number): number {
     const [value, nextRng] = prand.uniformIntDistribution(min, max, rng);
 
     rng = nextRng;
@@ -29,173 +22,126 @@ function createRand({ seed }: { seed?: number } = {}): Rand {
   return rand;
 }
 
-const textDefaultMinWords = 1;
-const textDefaultMaxWords = 8;
 const floatRandGranularity = 4294967296;
 
-function randText({
-  value,
-  minWords = textDefaultMinWords,
-  maxWords = textDefaultMaxWords,
-  rand,
-}: {
-  value?: string;
-  minWords?: number;
-  maxWords?: number;
-  rand: Rand;
-}): Text {
-  const resolvedValue =
-    value ??
-    loremIpsum({
-      count: rand(minWords, maxWords),
-      units: "words",
-      suffix: "",
-      // eslint-disable-next-line no-magic-numbers
-      random: () => rand(0, floatRandGranularity) / floatRandGranularity,
-    });
+function randSentence({ rand }: { rand: Rand }): string {
+  const text = loremIpsum({
+    count: 1,
+    units: "sentence",
+    suffix: "",
+    random: () => rand(0, floatRandGranularity) / floatRandGranularity,
+  });
 
-  return {
-    type: "text",
-    value: resolvedValue.toLowerCase(),
-  };
+  return `${sentenceCase(text)}.`;
 }
 
-const codeSpanDefaultMinWords = 1;
-const codeSpanDefaultMaxWords = 4;
+function wrapPartOfTextNodeWith(
+  {
+    text,
+    start,
+    end,
+    rand,
+  }: {
+    text: Text;
+    start?: number;
+    end?: number;
+    rand: Rand;
+  },
+  wrapper: (text: Text) => PhrasingContent,
+): PhrasingContent[] {
+  const words = text.value.split(" ");
+  const resolvedStart = start ?? rand(0, words.length - 1);
+  const resolvedEnd = end ?? Math.min(resolvedStart + rand(1, 3), words.length);
+  const wordsBefore = words.slice(0, resolvedStart);
+  const wordsToWrap = words.slice(resolvedStart, resolvedEnd);
+  const wordsAfter = words.slice(resolvedEnd);
+  const contents: PhrasingContent[] = [];
 
-function randCodeSpan({
-  value,
-  convention = "camel-case",
-  minWords = codeSpanDefaultMinWords,
-  maxWords = codeSpanDefaultMaxWords,
+  if (wordsBefore.length > 0) {
+    contents.push({
+      type: "text",
+      value: `${wordsBefore.join(" ")} `,
+    });
+  }
+
+  contents.push(
+    wrapper({
+      type: "text",
+      value: wordsToWrap.join(" "),
+    }),
+  );
+
+  if (wordsAfter.length > 0) {
+    contents.push({
+      type: "text",
+      value: ` ${wordsAfter.join(" ")}`,
+    });
+  }
+
+  return contents;
+}
+
+const paragraphDefaultMinSentences = 1;
+const paragraphDefaultMaxSentences = 8;
+
+function randParagraph({
+  sentences,
   rand,
 }: {
-  value?: string;
-  convention?: "camel-case" | "snake-case";
-  minWords?: number;
-  maxWords?: number;
+  sentences?: number;
   rand: Rand;
-}): InlineCode {
-  let resolvedValue =
-    value ??
-    loremIpsum({
-      count: rand(minWords, maxWords),
-      units: "words",
-      suffix: "",
-      // eslint-disable-next-line no-magic-numbers
-      random: () => rand(0, floatRandGranularity) / floatRandGranularity,
-    });
+}): Paragraph {
+  const resolvedSentences =
+    sentences ??
+    rand(paragraphDefaultMinSentences, paragraphDefaultMaxSentences);
+  const contents: PhrasingContent[] = [];
 
-  // eslint-disable-next-line default-case
-  switch (convention) {
-    case "camel-case":
-      resolvedValue = camelCase(resolvedValue);
-      break;
-    case "snake-case":
-      resolvedValue = resolvedValue.split(" ").join("_");
-      break;
+  for (let index = 0; index < resolvedSentences; index += 1) {
+    const sentence = randSentence({ rand });
+    const text: Text = { type: "text", value: sentence };
+    const chosen = rand(0, 5);
+
+    switch (chosen) {
+      case 1: {
+        contents.push(
+          ...wrapPartOfTextNodeWith({ text, rand }, (node) => ({
+            type: "strong",
+            children: [node],
+          })),
+        );
+
+        break;
+      }
+      case 2: {
+        contents.push(
+          ...wrapPartOfTextNodeWith({ text, rand }, (node) => ({
+            type: "emphasis",
+            children: [node],
+          })),
+        );
+
+        break;
+      }
+      case 3: {
+        contents.push(
+          ...wrapPartOfTextNodeWith({ text, rand }, (node) => ({
+            type: "inlineCode",
+            value: camelCase(node.value),
+          })),
+        );
+
+        break;
+      }
+      default: {
+        contents.push(text);
+      }
+    }
   }
 
   return {
-    type: "inlineCode",
-    value: resolvedValue,
-  };
-}
-
-function randEmphasis({
-  children,
-  rand,
-}: {
-  children?: PhrasingContent[];
-  rand: Rand;
-}): Emphasis {
-  return {
-    type: "emphasis",
-    children: children ?? [
-      randText({
-        minWords: textDefaultMinWords,
-        maxWords: Math.min(
-          rand(textDefaultMinWords, textDefaultMaxWords),
-          rand(textDefaultMinWords, textDefaultMaxWords),
-        ),
-        rand,
-      }),
-    ],
-  };
-}
-
-function randStrongEmphasis({
-  children,
-  rand,
-}: {
-  children?: PhrasingContent[];
-  rand: Rand;
-}): Strong {
-  return {
-    type: "strong",
-    children: children ?? [
-      randText({
-        minWords: textDefaultMinWords,
-        maxWords: Math.min(
-          rand(textDefaultMinWords, textDefaultMaxWords),
-          rand(textDefaultMinWords, textDefaultMaxWords),
-        ),
-        rand,
-      }),
-    ],
-  };
-}
-
-const paragraphDefaultMinChildLength = 1;
-const paragraphDefaultMaxChildLength = 32;
-
-// eslint-disable-next-line no-unused-vars
-type PhrasingContentFunction = (params: { rand: Rand }) => PhrasingContent;
-
-const paragraphChildrenFunctions: PhrasingContentFunction[] = [
-  randText,
-  randText,
-  randText,
-  randText,
-  randCodeSpan,
-  randEmphasis,
-  randStrongEmphasis,
-];
-
-function randParagraph({
-  children,
-  childLength,
-  rand,
-}: {
-  children?: PhrasingContent[];
-  childLength?: number;
-  rand: Rand;
-}): Paragraph {
-  const resolvedChildren =
-    children ??
-    Array.from(
-      {
-        length:
-          childLength ??
-          rand(paragraphDefaultMinChildLength, paragraphDefaultMaxChildLength),
-      },
-      () =>
-        paragraphChildrenFunctions[
-          rand(0, paragraphChildrenFunctions.length - 1)
-        ]({ rand }),
-    );
-
-  return {
     type: "paragraph",
-    children: resolvedChildren,
+    children: contents,
   };
 }
 
-export {
-  createRand,
-  randCodeSpan,
-  randEmphasis,
-  randParagraph,
-  randStrongEmphasis,
-  randText,
-};
+export { createRand, randParagraph };
